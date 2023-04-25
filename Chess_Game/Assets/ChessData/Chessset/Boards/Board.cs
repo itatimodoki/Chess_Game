@@ -34,13 +34,13 @@ namespace Chess_Game.Chessset.Boards
 
         }
 
-        public Board PiecesMove()
+        public Board PieceMove()
         {
             //‹î‚ğ“®‚©‚·ˆ—
             return new Board();
         }
 
-        public Board RemovePieces()
+        public Board RemovePiece()
         {
             //ƒs[ƒX‚ğæ‚èœ‚­ˆ—
             return new Board();

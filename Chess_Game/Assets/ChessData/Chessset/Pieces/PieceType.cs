@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace Chess_Game.Chessset.Pieces
 {
-    public abstract class Pieces : MonoBehaviour
+    public enum PieceType
     {
-        bool isInitialAction;
-       // List CanMovePosition;
-
-
+        Pawn,
+        Luke,
+        Knight,
+        Bishop,
+        Queen,
+        King,
     }
 
 }
