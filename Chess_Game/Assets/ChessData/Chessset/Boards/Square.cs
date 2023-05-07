@@ -1,33 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Chess_Game.Chessset.Pieces;
 
 namespace Chess_Game.Chessset.Boards
 {
-    public class Square : MonoBehaviour
+    public class Square
     {
+        private static readonly Square Empty = new Square();
+        private readonly Piece holdPiece;
 
-        public readonly Color32 whiteSquaresColor = new Color32(205,161,111,255);
-
-        public readonly Color32 blackSquaresColor = new Color32(143, 100, 70, 255);
-
-        [SerializeField]
-        private SpriteRenderer mySpriteRenderer = null;
-
-        public void ToBlackColor()
+        public Square(Piece piece)
         {
-            ColorChange(blackSquaresColor);
+            holdPiece = piece;
         }
 
-        public void ToWhiteColor()
+        public Square()
         {
-            ColorChange(whiteSquaresColor);
+            holdPiece = new Piece();
         }
 
-        private void ColorChange(Color nextColor)
+        public bool IsEmpty()
         {
-            mySpriteRenderer.color = nextColor;
+            return this == Empty;
         }
+
+        public Piece GetPiece()
+        {
+            return holdPiece;
+        }
+
+        
     }
 
 }

@@ -9,8 +9,6 @@ namespace Chess_Game.Players.Player
 {
     public abstract class GamePlayer : MonoBehaviour
     {
-        PieceList myPiece = new PieceList();
-
         public abstract IEnumerator Initialize();
 
         public abstract IEnumerator CreatePieceList();

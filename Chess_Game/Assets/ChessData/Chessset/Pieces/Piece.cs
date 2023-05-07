@@ -4,25 +4,47 @@ using UnityEngine;
 
 namespace Chess_Game.Chessset.Pieces
 {
-    public abstract class Piece : MonoBehaviour
+    public class Piece
     {
-        /// <summary>
-        /// 駒の分類
-        /// </summary>
-        public abstract PieceType PieceType { get; }
+        private static readonly Piece Empty = new Piece();
+
+        private readonly PieceType pieceType;
+        private readonly ColorType colorType;
+        private readonly MovePositionList movePositionList;
 
         /// <summary>
-        /// 駒の分類毎の数
+        /// 最初の行動か
         /// </summary>
-        public abstract TypeQuantity TypeQuantity { get; }
+        private bool isInitialAction = true;
 
-        /// <summary>
-        /// 行動を一度でも行ったか
-        /// </summary>
-        public abstract bool IsInitialAction
+        public Piece(PieceType pieceType,ColorType colorType,MovePositionList movePositionList)
         {
-            protected set;
-            get;
+            this.pieceType = pieceType;
+            this.colorType = colorType;
+
+            this.movePositionList = movePositionList;
+        }
+
+        public Piece()
+        {
+            this.pieceType = PieceType.Empty;
+            this.colorType = ColorType.Empty;
+            this.movePositionList = new MovePositionList();
+        }
+
+        public bool IsEmpty()
+        {
+            return this == Piece.Empty;
+        }
+
+        public Piece Remove()
+        {
+            return Piece.Empty;
+        }
+
+        public bool IsInitialAction()
+        {
+            return isInitialAction;
         }
     }
 }

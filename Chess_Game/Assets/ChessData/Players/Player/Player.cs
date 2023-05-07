@@ -13,9 +13,6 @@ namespace Chess_Game.Players.Player
         [SerializeField]
         private GameObject pieceParentObject = null;
 
-        private PieceList myPieceList;
-        
-
         public void Start()
         {
             StartCoroutine( Initialize());
@@ -23,15 +20,7 @@ namespace Chess_Game.Players.Player
 
         public override IEnumerator Initialize()
         {
-            PieceGenerator pieceGenerator = new PieceGenerator();
-
-            yield return pieceGenerator.
-                LoadBlackPieceList( result => myPieceList = result);
-
-            foreach (var pice in myPieceList.pieceList)
-            {
-                pice.transform.SetParent(pieceParentObject.transform);
-            }
+            yield return null;
         }
 
         public override IEnumerator CreatePieceList()

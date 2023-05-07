@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Chess_Game.Chessset.Pieces
 {
-    public enum PieceType
+    public enum ColorType
     {
         Empty,
-        Pawn,
-        Luke,
-        Knight,
-        Bishop,
-        Queen,
-        King,
+        Black,
+        White,
     }
 
 }

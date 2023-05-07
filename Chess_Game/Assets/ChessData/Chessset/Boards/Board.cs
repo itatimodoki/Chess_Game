@@ -2,48 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Chess_Game.Chessset.Pieces;
 
 namespace Chess_Game.Chessset.Boards
 {
-    public class Board : MonoBehaviour
+    public class Board
     {
-        [SerializeField]
-        private Square square = null;
+        private readonly Grid grid;
+        public readonly File FileSize = new File(8);
+        public readonly Rank RankSize = new Rank(8);
 
-        [SerializeField]
-        private SpriteRenderer boardSprite = null;
-
-        [SerializeField]
-        private Transform SquresParent = null;
-
-        private readonly int maxFile = 8;
-        private readonly int maxRank = 8;
-
-        private Square[,] squares;
-
-
-        private void Start()
+        public Board()
         {
-            BoardSize boardSize = new BoardSize(boardSprite, maxFile, maxRank);
-            BoardGenerator boardGenerator = new BoardGenerator(square, boardSize);
-            squares = boardGenerator.Create(SquresParent);
+            grid = new Grid(FileSize,RankSize);
         }
 
-        private void InitializeBoard()
+        private Board(Grid grid)
         {
-
+            this.grid = grid;
         }
 
-        public Board PieceMove()
+        public Board SetPiece(Piece piece,BoardPosition position)
         {
-            //ãÓÇìÆÇ©Ç∑èàóù
-            return new Board();
+            return new Board( grid.SetPiece(piece, position));
         }
 
-        public Board RemovePiece()
+        public Piece GetPiece(BoardPosition position)
         {
-            //ÉsÅ[ÉXÇéÊÇËèúÇ≠èàóù
-            return new Board();
+            return grid.GetPiece(position);
         }
+
+        public Square GetSquare(BoardPosition position)
+        {
+            return grid.GetSquare(position);
+        }
+
+        public Board RemovePiece(BoardPosition position)
+        {
+            return new Board(grid.Remove(position));
+        }
+
     }
 }
