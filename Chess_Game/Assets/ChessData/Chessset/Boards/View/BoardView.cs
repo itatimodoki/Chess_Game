@@ -8,20 +8,19 @@ namespace Chess_Game.Chessset.Boards.View
     public class BoardView : MonoBehaviour, IBoardObserver
     {
 
-
         [SerializeField]
-        Image backImage = null;
+        GridView gridView = null;
 
-        private Board board = new Board();
+        Board Board = new Board();
 
         private void Start()
         {
-
+            Initialize(Board);
         }
-        public void Initialize()
+        public void Initialize(Board board)
         {
 
-
+            gridView.CreateGrid(board);
         }
 
         public void Notify(Square updateSquare)

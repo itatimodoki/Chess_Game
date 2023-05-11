@@ -9,8 +9,14 @@ namespace Chess_Game
 {
     public class Chess : MonoBehaviour
     {
-        
+        private Board board = new Board();
+
         private void Initialize()
+        {
+
+        }
+
+        private void ChesssetSetUp()
         {
 
         }

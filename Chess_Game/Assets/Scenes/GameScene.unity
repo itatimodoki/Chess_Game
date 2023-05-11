@@ -305,8 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062e56fa7f11c6e4fa6067446d4dae88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 8758651115408353501, guid: be602f38b251ab2478878192721b3b45, type: 3}
-  space: {x: 0.12, y: 0.12, z: 0}
+  squarePrefab: {fileID: -6877923805144064633, guid: be602f38b251ab2478878192721b3b45, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,9 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eb89e7fe2a4504dbd6f3e0907ccc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 2598072063601327120, guid: 99a300ff6eeac3643bd35d9b017d4e77, type: 3}
-  squareParent: {fileID: 1371835648}
-  backImage: {fileID: 0}
+  gridView: {fileID: 0}
 --- !u!1 &811020830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,9 +1403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eb89e7fe2a4504dbd6f3e0907ccc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 8758651115408353501, guid: be602f38b251ab2478878192721b3b45, type: 3}
-  squareParent: {fileID: 269668235}
-  backImage: {fileID: 2081145947}
+  gridView: {fileID: 269668236}
 --- !u!114 &1803068019
 MonoBehaviour:
   m_ObjectHideFlags: 0

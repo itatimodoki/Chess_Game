@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8758651115408353498}
   - component: {fileID: 8758651115408353501}
   - component: {fileID: 8758651115408353500}
+  - component: {fileID: -6877923805144064633}
   m_Layer: 5
   m_Name: SquareView
   m_TagString: Untagged
@@ -103,3 +104,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6877923805144064633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8758651115408353502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b8c30e6d316b3478faa02ef92dec9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myImage: {fileID: 8758651115408353501}
