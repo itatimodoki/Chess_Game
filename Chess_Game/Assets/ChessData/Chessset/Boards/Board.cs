@@ -6,25 +6,21 @@ using Chess_Game.Chessset.Pieces;
 
 namespace Chess_Game.Chessset.Boards
 {
-    public class Board
+    public class Board:Subject
     {
-        private readonly Grid grid;
+        private  Grid grid;
         public readonly File FileSize = new File(8);
         public readonly Rank RankSize = new Rank(8);
 
         public Board()
         {
-            grid = new Grid(FileSize,RankSize);
+            grid = new Grid(FileSize, RankSize);
         }
 
-        private Board(Grid grid)
+        public void SetPiece(Piece piece, BoardPosition position)
         {
-            this.grid = grid;
-        }
-
-        public Board SetPiece(Piece piece,BoardPosition position)
-        {
-            return new Board( grid.SetPiece(piece, position));
+            grid.SetPiece(piece, position);
+            base.PieceNotifyObservers(piece, position);
         }
 
         public Piece GetPiece(BoardPosition position)
@@ -37,9 +33,9 @@ namespace Chess_Game.Chessset.Boards
             return grid.GetSquare(position);
         }
 
-        public Board RemovePiece(BoardPosition position)
+        public void RemovePiece(BoardPosition position)
         {
-            return new Board(grid.Remove(position));
+            grid.Remove(position);
         }
 
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Chess_Game.Chessset.Pieces;
 
 namespace Chess_Game.Chessset.Boards
 {
@@ -13,11 +14,11 @@ namespace Chess_Game.Chessset.Boards
             observerList.Add(observer);
         }
 
-        public void Notify()
+        public void PieceNotifyObservers(Piece piece,BoardPosition boardPosition)
         {
             foreach(IBoardObserver observer in observerList)
             {
-               // observer.Update()
+                observer.PieceNotify(piece,boardPosition);
             }
         }
 

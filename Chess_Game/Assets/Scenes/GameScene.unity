@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eb89e7fe2a4504dbd6f3e0907ccc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceView: {fileID: 0}
   gridView: {fileID: 0}
 --- !u!1 &811020830
 GameObject:
@@ -985,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1417944095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcb105b3a7d071469c38e78b735267c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardView: {fileID: 1803068018}
 --- !u!1 &1707630517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eb89e7fe2a4504dbd6f3e0907ccc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceView: {fileID: 8100178164132839359, guid: 55e966950eb2cba47bc50a03fe8207e3, type: 3}
   gridView: {fileID: 269668236}
 --- !u!114 &1803068019
 MonoBehaviour:

@@ -53,15 +53,14 @@ namespace Chess_Game.Chessset.Pieces
         public Board BoardInPiece(Board board,List<Piece> pieceList,Side side)
         {
             Dictionary<BoardPosition, PieceType> piecePositons = GetSidePositions(side);
-            Board nextBoard = board;
 
             foreach(KeyValuePair<BoardPosition, PieceType> kvp in piecePositons)
             {
                 Piece piece = GetPiece(pieceList, kvp.Value);
-                nextBoard = nextBoard.SetPiece(piece, kvp.Key);
+                board.SetPiece(piece, kvp.Key);
             }
 
-            return nextBoard;
+            return board;
         }
 
         private Piece GetPiece(List<Piece> pieceList,PieceType pieceType)

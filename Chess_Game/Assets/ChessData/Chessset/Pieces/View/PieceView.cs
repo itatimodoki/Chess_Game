@@ -29,7 +29,7 @@ namespace Chess_Game.Chessset.Pieces.View
             return piece;
         }
 
-        public void CreateSpriteTable(ColorType colorType)
+        private void CreateSpriteTable(ColorType colorType)
         {
             if(colorType == ColorType.Black)
             {
