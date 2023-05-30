@@ -6,28 +6,24 @@ namespace Chess_Game.Chessset.Boards
 {
     public class BoardPosition
     {
-        public static readonly BoardPosition Empty = new BoardPosition(null, null);
-        private readonly File file;
-        private readonly Rank rank;
+        public static readonly BoardPosition Empty = new BoardPosition(File.Empty,Rank.Empty);
+        private readonly File File;
+        private readonly Rank Rank;
         public BoardPosition(File file,Rank rank)
         {
-            this.file = file;
-            this.rank = rank;
+            this.File = file;
+            this.Rank = rank;
         }
 
         public int FileToInt()
         {
-            return file.ToInt();
+            return File.ToInt();
         }
 
         public int RankToInt()
         {
-            return rank.ToInt();
+            return Rank.ToInt();
         }
 
-        public bool IsEmpty()
-        {
-            return this == Empty;
-        }
     }
 }

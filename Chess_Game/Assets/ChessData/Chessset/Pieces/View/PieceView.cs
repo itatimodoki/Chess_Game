@@ -60,9 +60,9 @@ namespace Chess_Game.Chessset.Pieces.View
             {
                 myImage.sprite = pieceSpriteTable[(int)type];
             }
-            catch (System.Exception e)
+            catch (Exception exception)
             {
-                throw e;
+                throw exception;
             }
         }
     }

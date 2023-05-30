@@ -1,10 +1,12 @@
 using Chess_Game.Chessset.Boards;
 using Chess_Game.Chessset.Pieces;
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Chess_Game.Chessset.Boards.View;
 
-using UnityEngine.AddressableAssets;
 
 namespace Chess_Game.Players.Player
 {
@@ -13,24 +15,33 @@ namespace Chess_Game.Players.Player
         [SerializeField]
         private GameObject pieceParentObject = null;
 
-        public void Start()
+        /// <summary>
+        /// ƒNƒŠƒbƒN‚µ‚½êŠ‚ğæ“¾‚·‚éˆ—
+        /// </summary>
+        public override BoardPosition Designation()
         {
-            StartCoroutine( Initialize());
+            return GetSquareViewBoarPosition();
+        }
+        
+        private BoardPosition GetSquareViewBoarPosition()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)ray.origin,(Vector2)ray.direction);
+
+            if (hit.collider == null)
+                return BoardPosition.Empty;
+           
+            SquareView target = hit.transform.GetComponent<SquareView>();
+
+            return target.GetBoardPosition();
         }
 
-        public override IEnumerator Initialize()
+        public override void Initialize(GamePlayer enemyPlayer)
         {
-            yield return null;
+            base.enemyPlayer = enemyPlayer;
+
         }
 
-        public override IEnumerator CreatePieceList()
-        {
-            return null;
-        }
 
-        public override Piece GetPiece()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

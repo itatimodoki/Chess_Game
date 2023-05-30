@@ -8,12 +8,11 @@ namespace Chess_Game.Chessset.Pieces
 {
     public class Piece
     {
-        private static readonly Piece Empty = new Piece();
+        public static readonly Piece Empty = new Piece();
 
         public readonly PieceType PieceType;
         public readonly ColorType ColorType;
         private readonly MovePositionList movePositionList;
-        private BoardPosition startPosition;
 
         public Piece(PieceType pieceType,ColorType colorType,MovePositionList movePositionList)
         {
@@ -34,10 +33,9 @@ namespace Chess_Game.Chessset.Pieces
             return this == Piece.Empty;
         }
 
-        public void SetStartPositon(BoardPosition startPosition)
+        public MovePositionList GetMovePosition()
         {
-            this.startPosition = startPosition;
+            return movePositionList;
         }
-
     }
 }

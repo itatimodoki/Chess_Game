@@ -7,9 +7,9 @@ namespace Chess_Game.Chessset.Boards
 {
     public interface IBoardObserver
     {
-        public void PieceNotify(Piece piece,BoardPosition boardPosition);
+        public void SetPieceNotify(Piece piece,BoardPosition boardPosition);
 
-        public void SquareNotify();
+        public void RemovePieceNotify(BoardPosition boardPosition);
     }
 
 }

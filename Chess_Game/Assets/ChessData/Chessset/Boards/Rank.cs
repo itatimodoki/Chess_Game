@@ -6,6 +6,7 @@ namespace Chess_Game.Chessset.Boards
 {
     public class Rank
     {
+        public readonly static Rank Empty = new Rank(-99);
         public readonly static int Min = 1;
         public readonly static int Max = 8;
 
@@ -13,11 +14,17 @@ namespace Chess_Game.Chessset.Boards
 
         public Rank(int rank)
         {
+            if(rank == -99)
+            {
+                this.rank = rank;
+                return;
+            }
+
             if (rank < Min)
-                throw new System.ArgumentOutOfRangeException();
+                throw new System.ArgumentOutOfRangeException("下限オーバー");
 
             if (rank > Max)
-                throw new System.ArgumentOutOfRangeException();
+                throw new System.ArgumentOutOfRangeException("上限オーバー");
 
             this.rank = rank;
         }
@@ -25,6 +32,23 @@ namespace Chess_Game.Chessset.Boards
         public int ToInt()
         {
             return rank;
+        }
+
+        /// <summary>
+        /// 範囲外になる場合はEmptyを返す
+        /// </summary>
+        /// <param name="rank"></param>
+        /// <returns></returns>
+        public Rank SafetedAdd(int rank)
+        {
+            int next = this.rank + rank;
+            if (Max < next)
+                return Rank.Empty;
+
+            if (next < Min)
+                return Rank.Empty;
+
+            return new Rank(next);
         }
     }
 

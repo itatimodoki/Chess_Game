@@ -4,17 +4,16 @@ using UnityEngine;
 using Chess_Game.Chessset.Pieces;
 using Chess_Game.Chessset.Boards;
 using Chess_Game.Players;
+using Cysharp.Threading.Tasks;
 
 namespace Chess_Game.Players.Player
 {
     public abstract class GamePlayer : MonoBehaviour
     {
-        public abstract IEnumerator Initialize();
+        protected GamePlayer enemyPlayer;
+        public abstract void Initialize(GamePlayer enemyPlayer);
 
-        public abstract IEnumerator CreatePieceList();
-
-        public abstract Piece GetPiece();
-
+        public abstract BoardPosition Designation();
 
     }
 

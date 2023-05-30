@@ -13,43 +13,72 @@ namespace Chess_Game.Chessset.Boards.View
         private readonly Color32 whiteSquaresColor = new Color32(205, 161, 111, 255);
         [SerializeField]
         private readonly Color32 blackSquaresColor = new Color32(143, 100, 70, 255);
+        [SerializeField]
+        private readonly Color32 destinationColor = new Color32(0, 255, 255, 255);
 
         [SerializeField]
         Image myImage = null;
 
-        public SquareView InstantiateSquareView(Vector3 position, Transform parent)
+        private PieceView holdPiece;
+
+        private SquareColorType startColor;
+
+        private BoardPosition myBoardPosition = BoardPosition.Empty;
+
+        public SquareView InstantiateSquareView(Vector3 position,BoardPosition boardPosition, Transform parent,SquareColorType startColor)
         {
             SquareView square = Instantiate(this, parent);
             square.transform.position = position;
+            square.myBoardPosition = boardPosition;
+
+            this.startColor = startColor;
+            square.ChangeColor(startColor);
+
             return square;
+        }
+
+        public BoardPosition GetBoardPosition()
+        {
+            return myBoardPosition;
         }
 
         public void SetPiece(PieceView piece)
         {
-            piece.transform.SetParent(this.transform);
-            piece.transform.localScale = Vector3.one;
-            piece.transform.position = this.transform.position;
+            holdPiece = piece;
+            holdPiece.transform.SetParent(this.transform);
+            holdPiece.transform.localScale = Vector3.one;
+            holdPiece.transform.position = this.transform.position;
         }
 
         public void RemovePiece()
         {
-            if(transform.childCount > 0)
-                GameObject.Destroy(transform.GetChild(0));
+            if (holdPiece == null)
+                return;
+
+            holdPiece = null;
+            GameObject.Destroy(transform.GetChild(0));
         }
 
-        public void ChangeColor(ColorType colorType)
+        public void ChangeColor(SquareColorType colorType)
         {
-            if (colorType == ColorType.Black)
-            {
+            if (colorType == SquareColorType.Black)
                 myImage.color = blackSquaresColor;
-                return;
-            }
 
-            if (colorType == ColorType.White)
-            {
+            if (colorType == SquareColorType.White)
                 myImage.color = whiteSquaresColor;
-                return;
-            }
+
+            if (colorType == SquareColorType.Destination)
+                myImage.color = destinationColor;
+        }
+
+        public void ResetColor()
+        {
+            ChangeColor(startColor);
+        }
+
+        public bool IsPieceHold()
+        {
+            return holdPiece != null;
         }
     }
 }

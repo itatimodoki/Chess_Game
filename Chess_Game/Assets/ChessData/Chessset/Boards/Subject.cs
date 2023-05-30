@@ -14,13 +14,20 @@ namespace Chess_Game.Chessset.Boards
             observerList.Add(observer);
         }
 
-        public void PieceNotifyObservers(Piece piece,BoardPosition boardPosition)
+        public void SetPieceNotifyObservers(Piece piece,BoardPosition boardPosition)
         {
             foreach(IBoardObserver observer in observerList)
             {
-                observer.PieceNotify(piece,boardPosition);
+                observer.SetPieceNotify(piece,boardPosition);
             }
         }
 
+        public void RemovePieceNotifyObservers(BoardPosition boardPosition)
+        {
+            foreach (IBoardObserver observer in observerList)
+            {
+                observer.RemovePieceNotify(boardPosition);
+            }
+        }
     }
 }

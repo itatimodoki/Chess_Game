@@ -44,38 +44,46 @@ namespace Chess_Game.Chessset.Boards.View
 
         private SquareView CreateSquaresImage(int file, int rank, int checkerCount)
         {
-            Vector3 nextPosition = new Vector3(file + space.x, rank + space.y, 0);
+            var nextPosition = new Vector3(rank + space.x, file + space.y, 0);
+            var nextBoardPosition = new BoardPosition(new File(file + 1), new Rank(rank + 1));
 
-            SquareView square = squarePrefab.InstantiateSquareView(nextPosition,this.transform);
+            SquareColorType colorType = (SquareColorType)(checkerCount % 2);
+            SquareView square = squarePrefab.InstantiateSquareView(nextPosition, nextBoardPosition, this.transform, colorType);
 
-            ColorType colorType = (ColorType)((checkerCount % 2) + 1);
-            square.ChangeColor(colorType);
-           
             return square;
         }
 
         public void SetPiece(PieceView piece, BoardPosition boardPosition)
         {
-            if (squares == null)
-                throw new System.NullReferenceException("CreateGrid()を呼び出してから使用して下さい");
-
             int file = boardPosition.FileToInt();
             int rank = boardPosition.RankToInt();
 
-            squares[rank-1,file-1].SetPiece(piece);
+            squares[file - 1, rank - 1].SetPiece(piece);
         }
 
         public void RemovePiece(BoardPosition boardPosition)
         {
-            if (squares == null)
-                throw new System.NullReferenceException("CreateGrid()を呼び出してから使用して下さい");
-
             int file = boardPosition.FileToInt();
             int rank = boardPosition.RankToInt();
 
-            squares[rank - 1, file - 1].RemovePiece();
+            squares[file - 1, rank - 1].RemovePiece();
         }
 
+        public void SquareChangeColor(BoardPosition boardPosition, SquareColorType colorType)
+        {
+            int file = boardPosition.FileToInt();
+            int rank = boardPosition.RankToInt();
+
+            squares[file - 1, rank - 1].ChangeColor(colorType);
+        }
+
+        public void SquareColorReset(BoardPosition boardPosition)
+        {
+            int file = boardPosition.FileToInt();
+            int rank = boardPosition.RankToInt();
+
+            squares[file - 1, rank - 1].ResetColor();
+        }
     }
 
 }
