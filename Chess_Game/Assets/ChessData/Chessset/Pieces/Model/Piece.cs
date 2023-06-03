@@ -7,7 +7,7 @@ using System;
 
 namespace Chess_Game.Chessset.Pieces
 {
-    public class Piece:IPiece
+    public class Piece:IPiece,ICloneable
     {
         public static readonly Piece Empty = new Piece();
 
@@ -40,6 +40,11 @@ namespace Chess_Game.Chessset.Pieces
         {
             action();
             IsFrstMove = false;
+        }
+
+        public object Clone()
+        {
+            return (IPiece)MemberwiseClone();
         }
     }
 }

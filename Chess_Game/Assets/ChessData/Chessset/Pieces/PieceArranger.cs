@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Chess_Game.Chessset.Boards;
 using Chess_Game.Players;
+using System;
 
 namespace Chess_Game.Chessset.Pieces
 {
@@ -70,7 +71,7 @@ namespace Chess_Game.Chessset.Pieces
                 if (piece.GetPieceType() != pieceType)
                     continue;
 
-                return piece;
+                return (IPiece)((ICloneable)piece).Clone();
             }
             throw new System.ArgumentException();
         }
