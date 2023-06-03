@@ -71,6 +71,33 @@ namespace Chess_Game.Chessset.Pieces.MoveLogics
             return boardPositions.ToArray();
         }
 
+        /// <summary>
+        /// 盤とすべての行先座標から、実際の行先座標の生成
+        /// </summary>
+        public static IList<BoardPosition> LineDestination(Board board, BoardPosition[] line,ColorType colorType)
+        {
+            var lineMovePositions = new List<BoardPosition>();
+            foreach (BoardPosition boardPosition in line)
+            {
+
+                if (boardPosition.IsEmpty())
+                    continue;
+
+                IPiece piece = board.GetPiece(boardPosition);
+                if (piece.GetPieceType() == PieceType.Empty)
+                {
+                    lineMovePositions.Add(boardPosition);
+                    continue;
+                }
+
+                if (colorType == piece.GetColorType())
+                    break;
+
+                lineMovePositions.Add(boardPosition);
+                break;
+            }
+            return lineMovePositions;
+        }
     }
 
 }

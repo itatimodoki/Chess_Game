@@ -67,7 +67,10 @@ namespace Chess_Game
 
                 //そこが移動可能先だったらピースを移動、それ以外ならやり直し
                 if (!destinations.Exists(bp => destinationClickPosition.Comparison(bp)))
+                {
+                    pieceMoveDestinationView.Reset();
                     continue;
+                }
 
                 board.PieceMove(clickPosition, destinationClickPosition);
 

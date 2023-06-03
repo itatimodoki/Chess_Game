@@ -28,34 +28,9 @@ namespace Chess_Game.Chessset.Pieces.Model
             foreach (MoveLineRange moveLineRange in moveLineRanges)
             {
                 BoardPosition[] line = Destination.LineDestinationCalculation(basePosition, moveLineRange, playSide);
-                lukeMovePositions.AddRange(LineDestination(board, line));
+                lukeMovePositions.AddRange(Destination.LineDestination(board, line, base.colorType));
             }
             return lukeMovePositions;
-        }
-
-        private IList<BoardPosition> LineDestination(Board board, BoardPosition[] line)
-        {
-            var lineMovePositions = new List<BoardPosition>();
-            foreach (BoardPosition boardPosition in line)
-            {
-
-                if (boardPosition.IsEmpty())
-                    continue;
-
-                IPiece piece = board.GetPiece(boardPosition);
-                if (piece.GetPieceType() == PieceType.Empty)
-                {
-                    lineMovePositions.Add(boardPosition);
-                    continue;
-                }
-
-                if (this.GetColorType() == piece.GetColorType())
-                    break;
-
-                lineMovePositions.Add(boardPosition);
-                break;
-            }
-            return lineMovePositions;
         }
     }
 
