@@ -25,13 +25,13 @@ namespace Chess_Game.Chessset.Boards.View
 
         private BoardPosition myBoardPosition = BoardPosition.Empty;
 
-        public SquareView InstantiateSquareView(Vector3 position,BoardPosition boardPosition, Transform parent,SquareColorType startColor)
+        public SquareView InstantiateSquareView(Vector3 position, BoardPosition boardPosition, Transform parent, SquareColorType startColor)
         {
             SquareView square = Instantiate(this, parent);
             square.transform.position = position;
             square.myBoardPosition = boardPosition;
 
-            this.startColor = startColor;
+            square.SetStartColor(startColor);
             square.ChangeColor(startColor);
 
             return square;
@@ -55,8 +55,8 @@ namespace Chess_Game.Chessset.Boards.View
             if (holdPiece == null)
                 return;
 
-            holdPiece = null;
-            GameObject.Destroy(transform.GetChild(0));
+            holdPiece.gameObject.SetActive(false);
+
         }
 
         public void ChangeColor(SquareColorType colorType)
@@ -74,6 +74,11 @@ namespace Chess_Game.Chessset.Boards.View
         public void ResetColor()
         {
             ChangeColor(startColor);
+        }
+
+        public void SetStartColor(SquareColorType colorType)
+        {
+            startColor = colorType;
         }
 
         public bool IsPieceHold()

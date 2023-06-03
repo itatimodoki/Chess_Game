@@ -8,6 +8,7 @@ using Chess_Game.Chessset.Boards;
 using Chess_Game.Chessset.Pieces;
 using Chess_Game.Chessset.Boards.View;
 using Chess_Game.Chessset.Pieces.MoveLogics;
+using System.Linq;
 
 namespace Chess_Game
 {
@@ -29,16 +30,51 @@ namespace Chess_Game
             {
                 //クリックした座標の取得
                 await UniTask.WaitUntil(IsSquareClick, cancellationToken: token);
-
                 BoardPosition clickPosition = gamePlayer.Designation();
 
-                Piece piece = board.GetPiece(clickPosition);
-                if (piece.PieceType == PieceType.Empty)
+                //駒があるか
+                IPiece piece = board.GetPiece(clickPosition);
+                if (piece.GetPieceType() == PieceType.Empty)
                 {
                     continue;
                 }
 
+                //駒は自分の駒か
+                if(piece.GetColorType() != gamePlayer.GetColorType())
+                {
+                    continue;
+                }
+
+                //移動できるなら表示
+                var pieceMoveDestinationView = new PieceMoveDestinationView(boardView);
+                List<BoardPosition> destinations = ((IDestinationble)piece).GetDestination(board, clickPosition,gamePlayer.GetPlaySide());
+                int count = 0;
+                foreach (BoardPosition destinationble in destinations)
+                {
+                    count++;
+                    pieceMoveDestinationView.ViewUpdate(destinationble);
+                }
+                if (count == 0)
+                    continue;
+
+                //ピースの移動
+                //クリックした座標の取得
+                await UniTask.WaitUntil(IsSquareClick, cancellationToken: token);
+                BoardPosition destinationClickPosition = gamePlayer.Designation();
+
                 Debug.Log($"{clickPosition.FileToInt()} {clickPosition.RankToInt()}");
+                Debug.Log($"{destinationClickPosition.FileToInt()} {destinationClickPosition.RankToInt()}");
+
+                //そこが移動可能先だったらピースを移動、それ以外ならやり直し
+                if (!destinations.Exists(bp => destinationClickPosition.Comparison(bp)))
+                    continue;
+
+                board.PieceMove(clickPosition, destinationClickPosition);
+
+                pieceMoveDestinationView.Reset();
+
+
+
 
                 break;
             }
@@ -56,6 +92,8 @@ namespace Chess_Game
 
             return true;
         }
+
+
 
         /// <summary>
         /// チェック（王手）されているか

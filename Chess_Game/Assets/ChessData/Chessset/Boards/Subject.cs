@@ -14,7 +14,7 @@ namespace Chess_Game.Chessset.Boards
             observerList.Add(observer);
         }
 
-        public void SetPieceNotifyObservers(Piece piece,BoardPosition boardPosition)
+        public void SetPieceNotifyObservers(IPiece piece,BoardPosition boardPosition)
         {
             foreach(IBoardObserver observer in observerList)
             {

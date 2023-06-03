@@ -63,22 +63,14 @@ namespace Chess_Game.Chessset.Pieces.MoveLogics
 
         private BoardPosition MovePositionToBoardPosition(MovePosition movePosition,BoardPosition originPostion)
         {
-            var toPositonFile = new File(originPostion.FileToInt());
-            toPositonFile = toPositonFile.SafetedAdd(movePosition.FileRange);
+            var toPositionFile = new File(originPostion.FileToInt());
+            toPositionFile = toPositionFile.SafetedAdd(movePosition.FileRange);
 
             var toPositionRank = new Rank(originPostion.RankToInt());
             toPositionRank = toPositionRank.SafetedAdd(movePosition.RankRange);
 
-            return new BoardPosition(toPositonFile, toPositionRank);
+            return new BoardPosition(toPositionFile, toPositionRank);
         }
-
-        public bool IsEmpty()
-        {
-            return changePositionList.Count == 0;       
-        }
-
-
-
 
     }
 }

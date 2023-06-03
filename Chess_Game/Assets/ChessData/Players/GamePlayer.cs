@@ -11,10 +11,22 @@ namespace Chess_Game.Players.Player
     public abstract class GamePlayer : MonoBehaviour
     {
         protected GamePlayer enemyPlayer;
-        public abstract void Initialize(GamePlayer enemyPlayer);
+        protected ColorType myPieceColor;
+        protected Side playSide;
+
+        public abstract void Initialize(ColorType colorType,Side playSide);
 
         public abstract BoardPosition Designation();
 
+        public ColorType GetColorType()
+        {
+            return myPieceColor;
+        }
+
+        public Side GetPlaySide()
+        {
+            return playSide;
+        }
     }
 
 }

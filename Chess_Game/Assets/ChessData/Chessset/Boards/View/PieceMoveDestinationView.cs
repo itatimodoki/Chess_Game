@@ -15,13 +15,10 @@ namespace Chess_Game.Chessset.Boards.View
             this.boardView = boardView;
         }
 
-        public void View(PieceMoveDestination destinationList)
+        public void ViewUpdate(BoardPosition boardPosition)
         {
-            foreach (BoardPosition boardPosition in destinationList)
-            {
-                boardView.SquareChangeColor(boardPosition, SquareColorType.Destination);
-                moveDestination.Add(boardPosition);
-            }
+            boardView.SquareChangeColor(boardPosition, SquareColorType.Destination);
+            moveDestination.Add(boardPosition);
         }
 
         public void Reset()

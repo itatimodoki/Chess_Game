@@ -40,13 +40,16 @@ namespace Chess_Game.Chessset.Boards
         public File SafetedAdd(int file)
         {
             int next = this.file + file;
-            if (Max < next)
-                return File.Empty;
 
-            if (next < Min)
+            if (next < Min || Max < next)
                 return File.Empty;
 
             return new File(next);
+        }
+
+        public bool IsEmpty()
+        {
+            return file == Empty.ToInt();
         }
     }
 

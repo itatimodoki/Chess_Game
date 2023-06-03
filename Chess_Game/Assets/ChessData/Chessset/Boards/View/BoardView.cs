@@ -21,14 +21,14 @@ namespace Chess_Game.Chessset.Boards.View
             board.AddObserver(this);
         }
 
-        public void SetPieceNotify(Piece piece, BoardPosition boardPosition)
+        public void SetPieceNotify(IPiece piece, BoardPosition boardPosition)
         {
             SetPiece(piece, boardPosition);
         }
 
-        private void SetPiece(Piece piece,BoardPosition boardPosition)
+        private void SetPiece(IPiece piece,BoardPosition boardPosition)
         {
-            PieceView instancePiece = pieceView.InstancePiece(piece.PieceType, piece.ColorType);
+            PieceView instancePiece = pieceView.InstancePiece(piece.GetPieceType(), piece.GetColorType());
             gridView.SetPiece(instancePiece, boardPosition);
         }
 
@@ -39,7 +39,7 @@ namespace Chess_Game.Chessset.Boards.View
 
         public void RemovePieceNotify(BoardPosition boardPosition)
         {
-            throw new System.NotImplementedException();
+            gridView.RemovePiece(boardPosition);
         }
 
         public void SquareChangeColor(BoardPosition boardPosition, SquareColorType colorType)

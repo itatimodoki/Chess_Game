@@ -42,13 +42,16 @@ namespace Chess_Game.Chessset.Boards
         public Rank SafetedAdd(int rank)
         {
             int next = this.rank + rank;
-            if (Max < next)
-                return Rank.Empty;
 
-            if (next < Min)
+            if (next < Min || Max < next)
                 return Rank.Empty;
 
             return new Rank(next);
+        }
+
+        public bool IsEmpty()
+        {
+            return rank == Empty.ToInt();
         }
     }
 

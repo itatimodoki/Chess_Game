@@ -25,13 +25,8 @@ public class Tester : MonoBehaviour
 
     private void Test()
     {
-        PieceGenerator pieceGenerator = new PieceGenerator();
 
-        List<Piece> pieces = pieceGenerator.Create(ColorType.Black);
 
-        PieceArranger pieceArranger = new PieceArranger();
-
-        pieceArranger.BoardInPiece(board, pieces, Side.Top);
     }
 
 

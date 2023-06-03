@@ -8,7 +8,7 @@ namespace Chess_Game.Chessset.Pieces
 {
     public class PieceArranger
     {
-        private Dictionary<BoardPosition, PieceType> topSidePositions = new Dictionary<BoardPosition, PieceType>
+        private readonly Dictionary<BoardPosition, PieceType> topSidePositions = new Dictionary<BoardPosition, PieceType>
         {
             [new BoardPosition(new File(8), new Rank(1))] = PieceType.Luke,
             [new BoardPosition(new File(8), new Rank(2))] = PieceType.Knight,
@@ -29,7 +29,7 @@ namespace Chess_Game.Chessset.Pieces
             [new BoardPosition(new File(7), new Rank(8))] = PieceType.Pawn,
         };
 
-        private Dictionary<BoardPosition, PieceType> underSidePositons= new Dictionary<BoardPosition, PieceType>
+        private readonly Dictionary<BoardPosition, PieceType> underSidePositions= new Dictionary<BoardPosition, PieceType>
         {
             [new BoardPosition(new File(1), new Rank(1))] = PieceType.Luke,
             [new BoardPosition(new File(1), new Rank(2))] = PieceType.Knight,
@@ -50,24 +50,24 @@ namespace Chess_Game.Chessset.Pieces
             [new BoardPosition(new File(2), new Rank(8))] = PieceType.Pawn,
         };
 
-        public Board BoardInPiece(Board board,List<Piece> pieceList,Side side)
+        public Board BoardInPiece(Board board,List<IPiece> pieceList,Side side)
         {
-            Dictionary<BoardPosition, PieceType> piecePositons = GetSidePositions(side);
+            Dictionary<BoardPosition, PieceType> piecePositions = GetSidePositions(side);
 
-            foreach(KeyValuePair<BoardPosition, PieceType> kvp in piecePositons)
+            foreach(KeyValuePair<BoardPosition, PieceType> kvp in piecePositions)
             {
-                Piece piece = GetPiece(pieceList, kvp.Value);
+                IPiece piece = GetPiece(pieceList, kvp.Value);
                 board.SetPiece(piece, kvp.Key);
             }
 
             return board;
         }
 
-        private Piece GetPiece(List<Piece> pieceList,PieceType pieceType)
+        private IPiece GetPiece(List<IPiece> pieceList,PieceType pieceType)
         {
-            foreach(Piece piece in pieceList)
+            foreach(IPiece piece in pieceList)
             {
-                if (piece.PieceType != pieceType)
+                if (piece.GetPieceType() != pieceType)
                     continue;
 
                 return piece;
@@ -84,7 +84,7 @@ namespace Chess_Game.Chessset.Pieces
 
             if(side == Side.Under)
             {
-                return underSidePositons;
+                return underSidePositions;
             }
             throw new System.Exception();
         }

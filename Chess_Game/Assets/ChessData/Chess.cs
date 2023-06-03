@@ -39,13 +39,13 @@ namespace Chess_Game
         /// </summary>
         private void ChesssetSetUp()
         {
-            PieceGenerator pieceGenerator = new PieceGenerator();
-            List<Piece> blackPieceList = pieceGenerator.Create(ColorType.Black);
-            List<Piece> whitePieceList = pieceGenerator.Create(ColorType.White);
+            var pieceGenerator = new PieceGenerator();
+            List<IPiece> blackPieceList = pieceGenerator.CreatesAllPiece(ColorType.Black);
+            List<IPiece> whitePieceList = pieceGenerator.CreatesAllPiece(ColorType.White);
 
             boardView.Initialize(board);
 
-            PieceArranger pieceArranger = new PieceArranger();
+            var pieceArranger = new PieceArranger();
             board = pieceArranger.BoardInPiece(board, blackPieceList, Side.Under);
             board = pieceArranger.BoardInPiece(board, whitePieceList, Side.Top);
         }
@@ -57,6 +57,8 @@ namespace Chess_Game
         {
             //Ç«ÇøÇÁÇ™çïÇ©îíÇ©åàÇﬂÇÈ
             //èâä˙âª
+            Player1.Initialize(ColorType.Black,Side.Under);
+            Player2.Initialize(ColorType.White,Side.Top);
         }
 
         private async UniTask Main(CancellationToken token)

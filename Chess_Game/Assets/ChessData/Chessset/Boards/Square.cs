@@ -8,16 +8,16 @@ namespace Chess_Game.Chessset.Boards
     public class Square
     {
         private static readonly Square Empty = new Square();
-        private readonly Piece holdPiece;
+        private readonly IPiece holdPiece;
 
-        public Square(Piece piece)
+        public Square(IPiece piece)
         {
             holdPiece = piece;
         }
 
         public Square()
         {
-            holdPiece = new Piece();
+            holdPiece = Piece.Empty;
         }
 
         public bool IsEmpty()
@@ -25,7 +25,7 @@ namespace Chess_Game.Chessset.Boards
             return this == Empty;
         }
 
-        public Piece GetPiece()
+        public IPiece GetPiece()
         {
             return holdPiece;
         }

@@ -33,7 +33,7 @@ namespace Chess_Game.Chessset.Boards
             return  squares;
         }
 
-        public Grid SetPiece(Piece piece,BoardPosition position)
+        public Grid SetPiece(IPiece piece,BoardPosition position)
         {
             Square[,] nextSquare = squares;
 
@@ -44,7 +44,7 @@ namespace Chess_Game.Chessset.Boards
             return new Grid(nextSquare);
         }
 
-        public Piece GetPiece(BoardPosition position)
+        public IPiece GetPiece(BoardPosition position)
         {
             int file = position.FileToInt();
             int rank = position.RankToInt();

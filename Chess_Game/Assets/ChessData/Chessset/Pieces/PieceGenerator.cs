@@ -3,60 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using Chess_Game.Chessset.Pieces.MoveLogics;
 using System;
+using Chess_Game.Chessset.Pieces.Model;
 
 namespace Chess_Game.Chessset.Pieces
 {
     public class PieceGenerator
     {
-
-
-        public List<Piece> Create(ColorType colorType)
+        public List<IPiece> CreatesAllPiece(ColorType colorType)
         {
-            List<Piece> pieces = new List<Piece>();
+            var pieces = new List<IPiece>();
 
             for(int i = 0;i < Enum.GetNames(typeof(PieceType)).Length; i++)
             {
                 if ((PieceType)i == PieceType.Empty)
                     continue;
 
-                Piece piece = ByPieceTyoeCreate((PieceType)i, colorType);
+                IPiece piece = CreatePiece((PieceType)i, colorType);
                 pieces.Add(piece);
             }
 
             return pieces;
         }
 
-        private MovePositionList GetMovePositionList(PieceType type)
+        public IPiece CreatePiece(PieceType pieceType, ColorType colorType)
         {
-            switch (type)
+            switch (pieceType)
             {
                 case PieceType.Pawn:
-                    return new PawnMovePositionList();
+                    return new Pawn(pieceType,colorType);
 
                 case PieceType.Luke:
-                    return new LukeMovePositionList();
+                    return new Luke(pieceType, colorType);
 
                 case PieceType.Knight:
-                    return new KingMovePositionList();
+                    return new Knight(pieceType, colorType);
 
                 case PieceType.Bishop:
-                    return new BishopMovePositionList();
+                    return new Bishop(pieceType, colorType);
 
                 case PieceType.Queen:
-                    return new QueenMovePositionList();
+                    return new Queen(pieceType, colorType);
 
                 case PieceType.King:
-                    return new KingMovePositionList();
+                    return new King(pieceType, colorType);
             }
-            return new EmptyMovePositonList();
+            return Piece.Empty;
         }
 
-        private Piece ByPieceTyoeCreate(PieceType pieceType, ColorType colorType)
-        {
-            MovePositionList movePositionList = GetMovePositionList(pieceType);
-            return new Piece(pieceType, colorType, movePositionList);
-
-        }
     }
 
 }

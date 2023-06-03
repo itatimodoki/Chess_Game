@@ -17,33 +17,37 @@ namespace Chess_Game.Chessset.Boards
             grid = new Grid(FileSize, RankSize);
         }
 
-        public void SetPiece(Piece piece, BoardPosition position)
+        public void SetPiece(IPiece piece, BoardPosition position)
         {
             grid.SetPiece(piece, position);
             base.SetPieceNotifyObservers(piece, position);
         }
 
-        public Piece GetPiece(BoardPosition position)
+        public IPiece GetPiece(BoardPosition position)
         {
             return grid.GetPiece(position);
         }
 
         public void PieceMove(BoardPosition moveTargetPosition,BoardPosition nextPosition)
         {
-            Piece movePiece = GetPiece(moveTargetPosition);
-            if(movePiece.PieceType == PieceType.Empty)
-            {
-                throw new System.ArgumentException("ˆÚ“®‚³‚¹‚é‹î‚ª‚ ‚è‚Ü‚¹‚ñ");
-            }
+            IPiece movePiece = GetPiece(moveTargetPosition);
 
-            Piece nextPositionPieceState = GetPiece(nextPosition);
-            if(nextPositionPieceState.PieceType != PieceType.Empty)
+            movePiece.Action(() => 
             {
-                RemovePiece(nextPosition);
-            }
+                if (movePiece.GetPieceType() == PieceType.Empty)
+                {
+                    throw new System.ArgumentException("ˆÚ“®‚³‚¹‚é‹î‚ª‚ ‚è‚Ü‚¹‚ñ");
+                }
 
-            SetPiece(movePiece, nextPosition);
-            RemovePiece(moveTargetPosition);
+                IPiece nextPositionPieceState = GetPiece(nextPosition);
+                if (nextPositionPieceState.GetPieceType() != PieceType.Empty)
+                {
+                    RemovePiece(nextPosition);
+                }
+
+                SetPiece(movePiece, nextPosition);
+                RemovePiece(moveTargetPosition);
+            });
         }
 
         public Square GetSquare(BoardPosition position)
@@ -54,7 +58,7 @@ namespace Chess_Game.Chessset.Boards
         public void RemovePiece(BoardPosition position)
         {
             grid.Remove(position);
+            RemovePieceNotifyObservers(position);
         }
-
     }
 }

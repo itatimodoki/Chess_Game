@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Chess_Game.Chessset.Boards;
 
 namespace Chess_Game.Chessset.Pieces.MoveLogics
 {
-    public class MovePosition
+    public class MoveRange
     {
         public readonly int FileRange;
         public readonly int RankRange;
-        public readonly bool IsLine;
 
-        public MovePosition(int fileRange,int rankRange,bool isLine)
+        public MoveRange(int fileRange, int rankRange)
         {
-
             this.FileRange = fileRange;
             this.RankRange = rankRange;
-
-            this.IsLine = isLine;
         }
 
+        public MoveRange TurnOver()
+        {
+            int fileRange = this.FileRange * -1;
+            int rankRange = this.RankRange * -1;
+            return new MoveRange(fileRange, rankRange);
+        }
 
     }
 }
