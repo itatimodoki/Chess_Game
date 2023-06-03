@@ -73,11 +73,7 @@ namespace Chess_Game
                 }
 
                 board.PieceMove(clickPosition, destinationClickPosition);
-
                 pieceMoveDestinationView.Reset();
-
-
-
 
                 break;
             }

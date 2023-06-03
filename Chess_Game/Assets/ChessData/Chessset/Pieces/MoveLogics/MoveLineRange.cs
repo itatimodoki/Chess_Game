@@ -50,6 +50,7 @@ namespace Chess_Game.Chessset.Pieces.MoveLogics
 
         public IEnumerator GetEnumerator()
         {
+            Reset();
             return (IEnumerator)this;
         }
     }
